@@ -13,20 +13,26 @@ fn main() {
         let protocol = match target_pair.2 {
             'T' => "TCP",
             'U' => "UDP",
+            // see if there's an exception to throw here & stop the program
+            // also ignore ascii case everywhere
             _ => "unknown",
         };
         let mut input = String::new();
         match io::stdin().read_line(&mut input) {
             Ok(_) => {
+                //correctChecker(); have this return a boolean BUT BRANCH THIS
                 if input.trim().eq_ignore_ascii_case("q") {
                     break;
-                } else if input.trim() == target_pair.1.trim() {
+                }
+                if input.trim().to_lowercase() == target_pair.1.trim().to_lowercase() {
                     println!("correct! over {}", protocol)
                 } else {
                     println!(
-                        "wrong, idiot. you should have said {}.",
+                        "wrong; {} is {}.",
+                        target_pair.0.to_string(),
                         target_pair.1.trim()
-                    )
+                    );
+                    // have it make you type the right thing
                 };
             }
             Err(error) => {
