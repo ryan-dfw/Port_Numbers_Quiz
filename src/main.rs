@@ -32,7 +32,18 @@ fn main() {
                         target_pair.0.to_string(),
                         target_pair.1.trim()
                     );
-                    // have it make you type the right thing
+                    println!("please type the correct name");
+                    input.clear();
+                    match io::stdin().read_line(&mut input) {
+                        Ok(_) => {
+                            if input.trim().to_lowercase() == target_pair.1.trim().to_lowercase() {
+                                println!("correct! over {}", protocol)
+                            }
+                        }
+                        Err(error) => {
+                            println!("Error reading input: {}", error);
+                        }
+                    }
                 };
             }
             Err(error) => {
