@@ -13,8 +13,6 @@ fn main() {
         let protocol = match target_pair.2 {
             'T' => "TCP",
             'U' => "UDP",
-            // see if there's an exception to throw here & stop the program
-            // also ignore ascii case everywhere
             _ => "unknown",
         };
         let mut input = String::new();
